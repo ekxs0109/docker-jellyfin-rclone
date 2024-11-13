@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  jellyfin:
+    build: .
+    container_name: jellyfin
+    network_mode: bridge
+    # environment: # 代理配置
+      # - HTTPS_PROXY=http://host.docker.internal:7897 
+      # - HTTP_PROXY=http://host.docker.internal:7897
+      # - ALL_PROXY=socks5://host.docker.internal:7897
+      # - https_proxy=http://host.docker.internal:7897
+      # - http_proxy=http://host.docker.internal:7897
+      # - all_proxy=socks5://host.docker.internal:7897
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      - ./rclone.conf:/root/.config/rclone/rclone.conf:ro
+    ports:
+      - "8096:8096"
+    devices:
+      - /dev/fuse:/dev/fuse:rwm
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8096/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s 
+

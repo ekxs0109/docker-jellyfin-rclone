@@ -11,7 +11,13 @@
 
 ## 快速开始
 
-### 1. 准备 rclone 配置
+### 1. 创建必要目录
+
+```bash
+mkdir -p config cache 
+```
+
+### 2. 准备 rclone 配置
 
 首先需要配置 rclone 以连接你的云存储：
 
@@ -25,13 +31,13 @@
    cp ~/.config/rclone/rclone.conf ./rclone.conf
    ```
 
-### 2. 启动服务
+### 3. 启动服务
 
 ```bash
 docker compose up -d
 ```
 
-### 3. 配置 Jellyfin
+### 4. 配置 Jellyfin
 
 1. 访问 http://localhost:8096
 2. 按照设置向导完成初始配置

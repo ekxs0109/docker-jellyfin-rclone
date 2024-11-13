@@ -1,0 +1,6 @@
+[webdav]
+type = webdav
+url = http://example.com/webdav/
+vendor = other
+user = your_username
+pass = your_password 
