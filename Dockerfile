@@ -11,8 +11,10 @@ RUN apt-get update && \
     fuse3 \
     ca-certificates \
     curl \
+    fonts-noto-cjk-extra \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
 
 # 创建必要的目录和设置权限
 RUN mkdir -p /media /cache /config /root/.config/rclone /var/lib/jellyfin
